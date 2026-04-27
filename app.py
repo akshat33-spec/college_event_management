@@ -1,16 +1,20 @@
 from flask import Flask
+import os
 from flask_cors import CORS
 import mysql.connector
 
 app = Flask(__name__)
 CORS(app)
+import os
 
 db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="Akshat@33",
-    database="college_event_system"
+    host=os.getenv("MYSQLHOST"),
+    user=os.getenv("MYSQLUSER"),
+    password=os.getenv("MYSQLPASSWORD"),
+    database=os.getenv("MYSQLDATABASE"),
+    port=int(os.getenv("MYSQLPORT"))
 )
+
 
 cursor = db.cursor()
 
@@ -19,4 +23,4 @@ def home():
     return "College Event Management Backend Running Successfully!"
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)

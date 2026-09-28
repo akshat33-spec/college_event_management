@@ -14,7 +14,7 @@ db = mysql.connector.connect(
     database=os.getenv("MYSQLDATABASE"),
     port=int(os.getenv("MYSQLPORT"))
 )
-
+print ("hello")
 
 cursor = db.cursor()
 
@@ -24,3 +24,4 @@ def home():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
+
